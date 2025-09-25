@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { addImapAccount, getConnectedAccounts } from '../imap/iManager';
+import { addImapAccount, getConnectedAccounts, getSavedAccountConfigs } from '../imap/iManager';
 import { searchEmails, EmailsCountForAccount } from '../services/elastic.service';
 
 
@@ -34,22 +34,26 @@ export async function getAccounts(req: Request, res: Response){
 
 // taking count of emails in the connected account...
 export async function getAllAccounts(req: Request, res: Response){
-    const accounts = Object.keys(ConnectedAccount);
-    const result = await Promise.all(
-        accounts.map(async (email) => {
-            const totalEmails = await EmailsCountForAccount(email); // takes count from ES...
-            return{
-                id: email,
-                email,
-                provider: 'IMAP',
-                status: 'connected',
-                lastSync: new Date().toISOString(),
-                totalEmails,
-            };
-            
-        })
-    );
-    res.json(result);
+    try {
+        const accounts = getConnectedAccounts();
+        const result = await Promise.all(
+            accounts.map(async (account) => {
+                const totalEmails = await EmailsCountForAccount(account.email); // takes count from ES...
+                return{
+                    id: account.id,
+                    email: account.email,
+                    provider: account.provider,
+                    status: account.status,
+                    lastSync: account.lastSync,
+                    totalEmails,
+                };
+            })
+        );
+        res.json(result);
+    } catch (error) {
+        console.error('Error getting all accounts:', error);
+        res.status(500).json({ error: 'Failed to get accounts' });
+    }
 }
 
 
@@ -72,5 +76,56 @@ export async function searchEmailsByCategory(req: Request, res: Response) {
     } catch (error) {
         console.error('Error searching emails by category:', error);
         res.status(500).json({ error: 'Failed to search emails' });
+    }
+}
+
+// Get saved account configurations
+export async function getSavedAccounts(req: Request, res: Response) {
+    try {
+        const savedConfigs = getSavedAccountConfigs();
+        res.status(200).json({ 
+            message: 'Saved account configurations',
+            accounts: savedConfigs,
+            note: 'Passwords are not stored for security. Use POST /api/accounts/reconnect to restore connections.'
+        });
+    } catch (error) {
+        console.error('Error getting saved accounts:', error);
+        res.status(500).json({ error: 'Failed to get saved accounts' });
+    }
+}
+
+// Reconnect a saved account with password
+export async function reconnectAccount(req: Request, res: Response) {
+    try {
+        const { email, password } = req.body;
+        
+        if (!email || !password) {
+            return res.status(400).json({ error: 'Email and password are required' });
+        }
+
+        // Get saved account config
+        const savedConfigs = getSavedAccountConfigs();
+        const savedConfig = savedConfigs.find(config => config.email === email);
+        
+        if (!savedConfig) {
+            return res.status(404).json({ error: 'No saved configuration found for this email' });
+        }
+
+        // Reconnect with password
+        await addImapAccount({
+            email: savedConfig.email,
+            password: password,
+            host: savedConfig.host,
+            port: savedConfig.port,
+            secure: savedConfig.secure
+        });
+
+        res.status(200).json({ 
+            message: `Successfully reconnected ${email}`,
+            email: email
+        });
+    } catch (error) {
+        console.error('Error reconnecting account:', error);
+        res.status(500).json({ error: 'Failed to reconnect account' });
     }
 }

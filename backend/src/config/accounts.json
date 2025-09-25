@@ -1,0 +1,8 @@
+[
+  {
+    "email": "singharpit20034@gmail.com",
+    "host": "imap.gmail.com",
+    "port": 993,
+    "secure": true
+  }
+]

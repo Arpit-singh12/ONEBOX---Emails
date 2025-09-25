@@ -25,14 +25,19 @@ const getCategoryIcon = (category: string) => {
       return <Zap className="w-4 h-4 text-green-500" />;
     case 'meeting_booked':
       return <Calendar className="w-4 h-4 text-blue-500" />;
+    case 'action_required':
+    case 'action required':
+      return <AlertCircle className="w-4 h-4 text-yellow-500" />;
     case 'not_interested':
+    case 'not interested':
       return <X className="w-4 h-4 text-red-500" />;
     case 'spam':
       return <AlertCircle className="w-4 h-4 text-orange-500" />;
     case 'out_of_office':
+    case 'out of office':
       return <Clock className="w-4 h-4 text-purple-500" />;
     default:
-      return null;
+      return <Mail className="w-4 h-4 text-gray-500" />;
   }
 };
 
@@ -41,12 +46,18 @@ const getCategoryColor = (category: string) => {
     case 'interested':
       return 'bg-green-100 text-green-800 border-green-200';
     case 'meeting_booked':
+    case 'meeting booked':
       return 'bg-blue-100 text-blue-800 border-blue-200';
+    case 'action_required':
+    case 'action required':
+      return 'bg-yellow-100 text-yellow-800 border-yellow-200';
     case 'not_interested':
+    case 'not interested':
       return 'bg-red-100 text-red-800 border-red-200';
     case 'spam':
       return 'bg-orange-100 text-orange-800 border-orange-200';
     case 'out_of_office':
+    case 'out of office':
       return 'bg-purple-100 text-purple-800 border-purple-200';
     default:
       return 'bg-gray-100 text-gray-800 border-gray-200';

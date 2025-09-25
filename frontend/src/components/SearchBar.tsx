@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, X } from 'lucide-react';
+import { Search, Filter, X, RefreshCw } from 'lucide-react';
 import type { SearchFilters, EmailAccount } from '../types/email';
 import { clsx } from 'clsx';
 
@@ -7,9 +7,10 @@ interface SearchBarProps {
   filters: SearchFilters;
   accounts: EmailAccount[];
   onSearch: (filters: SearchFilters) => void;
+  onRefresh?: () => void;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ filters, accounts, onSearch }) => {
+export const SearchBar: React.FC<SearchBarProps> = ({ filters, accounts, onSearch, onRefresh }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [localFilters, setLocalFilters] = useState(filters);
 
@@ -47,18 +48,30 @@ export const SearchBar: React.FC<SearchBarProps> = ({ filters, accounts, onSearc
             onChange={(e) => setLocalFilters({ ...localFilters, query: e.target.value })}
             className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
-          <button
-            type="button"
-            onClick={() => setShowFilters(!showFilters)}
-            className={clsx(
-              'absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded-md transition-colors',
-              showFilters || hasActiveFilters
-                ? 'text-blue-600 bg-blue-50'
-                : 'text-gray-400 hover:text-gray-600'
-            )}
-          >
-            <Filter className="w-5 h-5" />
-          </button>
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
+                {onRefresh && (
+                  <button
+                    type="button"
+                    onClick={onRefresh}
+                    className="p-1 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
+                    title="Refresh emails"
+                  >
+                    <RefreshCw className="w-5 h-5" />
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setShowFilters(!showFilters)}
+                  className={clsx(
+                    'p-1 rounded-md transition-colors',
+                    showFilters || hasActiveFilters
+                      ? 'text-blue-600 bg-blue-50'
+                      : 'text-gray-400 hover:text-gray-600'
+                  )}
+                >
+                  <Filter className="w-5 h-5" />
+                </button>
+              </div>
         </div>
 
         {/* Advanced Filters */}
@@ -111,6 +124,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ filters, accounts, onSearc
                 <option value="all">All Categories</option>
                 <option value="interested">Interested</option>
                 <option value="meeting_booked">Meeting Booked</option>
+                <option value="action_required">Action Required</option>
                 <option value="not_interested">Not Interested</option>
                 <option value="spam">Spam</option>
                 <option value="out_of_office">Out of Office</option>

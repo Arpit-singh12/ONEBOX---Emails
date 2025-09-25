@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Email } from '../types/email';
 import { EmailCard } from './EmailCard';
-import { Loader2 } from 'lucide-react';
+import { LoadingSpinner } from './LoadingSpinner';
 
 interface EmailListProps {
   emails: Email[];
@@ -17,12 +17,7 @@ export const EmailList: React.FC<EmailListProps> = ({
   selectedEmailId
 }) => {
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
-        <span className="ml-2 text-gray-600">Loading emails...</span>
-      </div>
-    );
+    return <LoadingSpinner message="Loading emails..." />;
   }
 
   if (emails.length === 0) {
