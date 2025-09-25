@@ -1,5 +1,9 @@
 # Ignore frontend folder
 frontend/
-
 # Ignore all .env files in backend
 backend/*.env
+
+node_modules/
+dist/
+build/
+*.log
