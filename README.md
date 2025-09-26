@@ -171,6 +171,23 @@ frontend/
 
 ---
 
+
+## Demo link...
+https://drive.google.com/file/d/1sYBR3JsdO_wWkNVQtHjTiYtnaACnDuri/view?usp=sharing 
+
+<img width="1919" height="972" alt="Screenshot 2025-09-25 232932" src="https://github.com/user-attachments/assets/929563ba-cd8e-40ee-826c-35023c790115" />
+
+<img width="1919" height="973" alt="Screenshot 2025-09-25 234044" src="https://github.com/user-attachments/assets/9e30d70f-7c95-4f54-ab7a-24ac01723d37" />
+
+---
+
+## Credits:
+--Some Part of this Codebase is assisted by Chatgpt for some structure of tackling errors.
+--SlackWebhook Documentation.
+--Vectordb and Chroma documentaion.
+
+---
+
 ## 📄 License
 
 MIT
@@ -179,3 +196,4 @@ MIT
 
 
 **Built with ❤️ by contributors for efficient, intelligent email
+
