@@ -1,9 +1,23 @@
-# Ignore frontend folder
-frontend/
-# Ignore all .env files in backend
-backend/*.env
+# Ignore all .env files in backend and subfolders
+backend/**/*.env
 
+# Ignore all .env files everywhere (optional but safer)
+*.env
+
+# Ignore Node.js dependencies
 node_modules/
+
+# Ignore build artifacts
 dist/
 build/
+
+# Ignore logs
 *.log
+
+# Optional: OS / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.env.local
+.env.development
+.env.production
