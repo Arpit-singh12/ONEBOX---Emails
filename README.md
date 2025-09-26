@@ -4,7 +4,7 @@ A full-stack solution for real-time email synchronization, AI-based categorizati
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Real-Time IMAP Sync:** Persistent connections (IDLE mode) for instant updates across multiple accounts.
 - **Elasticsearch Search:** Fast, full-text search and filtering by account, folder, and category.
@@ -15,7 +15,7 @@ A full-stack solution for real-time email synchronization, AI-based categorizati
 
 ---
 
-## 🛠️ Local Environment Setup
+## Local Environment Setup
 
 ### Prerequisites
 
@@ -74,7 +74,7 @@ A full-stack solution for real-time email synchronization, AI-based categorizati
 
 ---
 
-## 🧑‍💻 Contributor Guide
+## Contributor Guide
 
 - Fork and clone the repo.
 - Use feature branches for changes.
@@ -85,7 +85,7 @@ A full-stack solution for real-time email synchronization, AI-based categorizati
 
 ---
 
-## 📚 API Reference
+## API Reference
 
 ### Accounts
 
@@ -119,7 +119,7 @@ A full-stack solution for real-time email synchronization, AI-based categorizati
 
 ---
 
-## 🏗️ Implementation Details
+## Implementation Details
 
 - **IMAP Sync:**  
   [`imap/iClient.ts`](backend/src/imap/iClient.ts) uses ImapFlow for persistent connections and real-time updates.
@@ -141,7 +141,7 @@ A full-stack solution for real-time email synchronization, AI-based categorizati
 
 ---
 
-## 🧩 Folder Structure
+## Folder Structure
 
 ```
 backend/
@@ -162,7 +162,7 @@ frontend/
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 - **IMAP login failed:** Use app password, enable IMAP.
 - **Elasticsearch errors:** Ensure Docker is running, check port 9200.
@@ -176,5 +176,6 @@ frontend/
 MIT
 
 ---
+
 
 **Built with ❤️ by contributors for efficient, intelligent email
