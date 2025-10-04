@@ -3,11 +3,19 @@ Assignment - Build a Feature-Rich Onebox for Emails
 
 ---
 
+<<<<<<< HEAD
 ## Backend
+=======
+## Features
+>>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
 
 
 ---
 
+<<<<<<< HEAD
+=======
+## Local Environment Setup
+>>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
 
 ## Features
 
@@ -47,6 +55,10 @@ Assignment - Build a Feature-Rich Onebox for Emails
 
 ---
 
+<<<<<<< HEAD
+=======
+## Contributor Guide
+>>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
 
 ## Tech Stack :-
 
@@ -63,8 +75,70 @@ Assignment - Build a Feature-Rich Onebox for Emails
 
 ---
 
+<<<<<<< HEAD
 ## Folder Structure
 
+=======
+## API Reference
+
+### Accounts
+
+- `POST /api/accounts`  
+  Add and sync a new IMAP account.
+
+- `GET /api/accounts`  
+  List connected accounts.
+
+- `GET /api/accounts/saved`  
+  List saved account configs (no passwords).
+
+- `POST /api/accounts/reconnect`  
+  Reconnect a saved account (requires password).
+
+- `GET /api/accounts/search/category?category=...&account=...&folder=...`  
+  Search emails by category/account/folder.
+
+### Emails
+
+- `GET /api/emails?email=...`  
+  Get emails for an account.
+
+- `POST /api/emails/search`  
+  Search emails (body: `{ query, account, folder }`).
+
+### AI Suggested Reply
+
+- `POST /api/reply/suggest`  
+  Get AI reply suggestion (body: `{ subject, body, email }`).
+
+---
+
+## Implementation Details
+
+- **IMAP Sync:**  
+  [`imap/iClient.ts`](backend/src/imap/iClient.ts) uses ImapFlow for persistent connections and real-time updates.
+
+- **Elasticsearch:**  
+  [`elastic.service.ts`](backend/src/services/elastic.service.ts) manages indexing, searching, and counting emails.
+
+- **AI Categorization:**  
+  [`Category/categorizer.ts`](backend/src/Category/categorizer.ts) uses Gemini for classification, with rule-based fallback and caching.
+
+- **Suggested Replies:**  
+  [`reply.service.ts`](backend/src/services/reply.service.ts) uses Gemini + vector DB (Chroma) for RAG-based responses.
+
+- **Integrations:**  
+  [`webhook.service.ts`](backend/src/services/webhook.service.ts) and [`slack.service.ts`](backend/src/services/slack.service.ts) handle notifications.
+
+- **Frontend:**  
+  [`App.tsx`](frontend/src/App.tsx) provides dashboard, email list/detail, account management, and search/filter UI.
+
+---
+
+## Folder Structure
+
+```
+>>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
 backend/
 ── src/
    ── controllers/
@@ -79,6 +153,10 @@ backend/
 ── tsconfig.json
 ── docker-compose.yml
 
+<<<<<<< HEAD
+=======
+## Troubleshooting
+>>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
 
 ## .env setup
 locate/create ".env" file and then add the following:-
@@ -87,6 +165,27 @@ GEMINI_API_KEY='Enter you API key'/GEMINI_API_KEY='Enter your Gemini API key her
 SlackWebhook_URL='Enter the URL'
 INTERESTED_WEBHOOK_URL='Enter the URL'
 
+<<<<<<< HEAD
+=======
+
+## Demo link...
+https://drive.google.com/file/d/1sYBR3JsdO_wWkNVQtHjTiYtnaACnDuri/view?usp=sharing 
+
+<img width="1919" height="972" alt="Screenshot 2025-09-25 232932" src="https://github.com/user-attachments/assets/929563ba-cd8e-40ee-826c-35023c790115" />
+
+<img width="1919" height="973" alt="Screenshot 2025-09-25 234044" src="https://github.com/user-attachments/assets/9e30d70f-7c95-4f54-ab7a-24ac01723d37" />
+
+---
+
+## Credits:
+--Some Part of this Codebase is assisted by Chatgpt for some structure of tackling errors.
+--SlackWebhook Documentation.
+--Vectordb and Chroma documentaion.
+
+---
+
+## 📄 License
+>>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
 
 ## Run this Backend Project Locally...
 
@@ -192,3 +291,9 @@ https://drive.google.com/file/d/1sYBR3JsdO_wWkNVQtHjTiYtnaACnDuri/view?usp=shari
 --SlackWebhook Documentation.
 --Vectordb and Chroma documentaion.
 
+<<<<<<< HEAD
+=======
+
+**Built with ❤️ by contributors for efficient, intelligent email
+
+>>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
