@@ -1,85 +1,92 @@
-# OneBox_Assignment
-Assignment - Build a Feature-Rich Onebox for Emails
+# OneBox: AI-Powered Email Aggregator
+
+A full-stack solution for real-time email synchronization, AI-based categorization, smart replies, and seamless integrations. Built with Node.js, Express, TypeScript, React, Tailwind, Elasticsearch, and Gemini AI.
 
 ---
 
-<<<<<<< HEAD
-## Backend
-=======
-## Features
->>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
+## 🚀 Features
 
-
----
-
-<<<<<<< HEAD
-=======
-## Local Environment Setup
->>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
-
-## Features
-
-### **1. Real-Time Email Synchronization**
-
-- Sync multiple **IMAP accounts** in real-time - minimum 2
-- Fetch **at least the last 30 days** of emails
-- Use **persistent IMAP connections (IDLE mode)** for real-time updates (**No cron jobs!**).
-
-### **2. Searchable Storage using Elasticsearch**
-
-- Store emails in a **locally hosted Elasticsearch** instance (use Docker).
-- Implement indexing to **make emails searchable**.
-- Support filtering by **folder & account**.
-
-### **3. AI-Based Email Categorization**
-
-- Implement an AI model to categorize emails into the following labels:
-    - **Interested**
-    - **Meeting Booked**
-    - **Not Interested**           
-    - **Spam**
-    - **Out of Office**
-
-### **4. Slack & Webhook Integration**
-
-- Send **Slack notifications** for every new **Interested** email.
-- Trigger **webhooks** (use [webhook.site](https://webhook.site) as the webhook URL) for external automation when an email is marked as **Interested**.
-
-### **5. AI-Powered Suggested Replies**
-
-- Store the **product and outreach agenda** in a **vector database**.
-- Use **RAG (Retrieval-Augmented Generation)** with any LLM to suggest replies.
-
-### **6. Frontend Interface**
-- Build a simple UI to display emails, filter by folder/account, and show AI categorization.
+- **Real-Time IMAP Sync:** Persistent connections (IDLE mode) for instant updates across multiple accounts.
+- **Elasticsearch Search:** Fast, full-text search and filtering by account, folder, and category.
+- **AI Categorization:** Gemini-powered classification (Interested, Meeting Booked, Action Required, Spam, Out of Office, etc.).
+- **Suggested Replies:** RAG (Retrieval-Augmented Generation) with vector DB and LLM for context-aware responses.
+- **Slack & Webhook Integration:** Automated notifications for "Interested" emails.
+- **Modern Frontend:** Responsive React UI with advanced filtering, account management, and real-time updates.
 
 ---
 
-<<<<<<< HEAD
-=======
-## Contributor Guide
->>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
+## 🛠️ Local Environment Setup
 
-## Tech Stack :-
+### Prerequisites
 
--- **Node.js** with **Express**
--- **TypeScript**
--- **Dotenv**
--- **LongChain + Choroma**
--- **IMAP** ("imapflow")
--- **ElasticSearch via Docker**
--- **OpenAI/Gemini API**
--- **Slack Webhooks**
--- **Mailparser**
+- Node.js v18+
+- npm
+- Docker (for Elasticsearch & Kibana)
+- IMAP-enabled email accounts (with app passwords)
+- Gemini/OpenAI API Key
 
+### Backend Setup
+
+1. **Clone the repo:**
+   ```sh
+   git clone https://github.com/Arpit-singh12/OneBox_Assignment.git
+   cd OneBox_Assignment/backend
+   ```
+
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+
+3. **Configure environment:**
+   - Copy `.env.example` to `.env` and fill in:
+     ```
+     PORT=your_backend_port
+     GEMINI_API_KEY=your_gemini_api_key
+     SlackWebhook_URL=your_slack_webhook_url
+     INTERESTED_WEBHOOK_URL=your_webhook_url
+     ```
+
+4. **Start Elasticsearch & Kibana:**
+   ```sh
+   docker-compose up -d
+   # Access ES at http://localhost:9200, Kibana at http://localhost:5601
+   ```
+
+5. **Run backend server:**
+   ```sh
+   npm run dev
+   # Server runs at http://localhost:5000
+   ```
+
+### Frontend Setup
+
+1. **Install dependencies:**
+   ```sh
+   cd ../frontend
+   npm install
+   ```
+
+2. **Start development server:**
+   ```sh
+   npm run dev
+   # App runs at http://localhost:5173
+   ```
 
 ---
 
-<<<<<<< HEAD
-## Folder Structure
+## 🧑‍💻 Contributor Guide
 
-=======
-## API Reference
+- Fork and clone the repo.
+- Use feature branches for changes.
+- Run `npm run lint` before PRs.
+- Backend code in [`backend/src`](backend/src/index.ts), frontend in [`frontend/src`](frontend/src/main.tsx).
+- Environment variables must be set locally.
+- Use Docker for Elasticsearch/Kibana.
+
+---
+
+## 📚 API Reference
 
 ### Accounts
 
@@ -113,7 +120,7 @@ Assignment - Build a Feature-Rich Onebox for Emails
 
 ---
 
-## Implementation Details
+## 🏗️ Implementation Details
 
 - **IMAP Sync:**  
   [`imap/iClient.ts`](backend/src/imap/iClient.ts) uses ImapFlow for persistent connections and real-time updates.
@@ -135,165 +142,38 @@ Assignment - Build a Feature-Rich Onebox for Emails
 
 ---
 
-## Folder Structure
+## 🧩 Folder Structure
 
 ```
->>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
 backend/
-── src/
-   ── controllers/
-   ── routes/
-   ── imap/
-   ── services/
-   ── utils/
-   ── index.ts
-
-── .env
-── package.json
-── tsconfig.json
-── docker-compose.yml
-
-<<<<<<< HEAD
-=======
-## Troubleshooting
->>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
-
-## .env setup
-locate/create ".env" file and then add the following:-
-
-GEMINI_API_KEY='Enter you API key'/GEMINI_API_KEY='Enter your Gemini API key here'
-SlackWebhook_URL='Enter the URL'
-INTERESTED_WEBHOOK_URL='Enter the URL'
-
-<<<<<<< HEAD
-=======
-
-## Demo link...
-https://drive.google.com/file/d/1sYBR3JsdO_wWkNVQtHjTiYtnaACnDuri/view?usp=sharing 
-
-<img width="1919" height="972" alt="Screenshot 2025-09-25 232932" src="https://github.com/user-attachments/assets/929563ba-cd8e-40ee-826c-35023c790115" />
-
-<img width="1919" height="973" alt="Screenshot 2025-09-25 234044" src="https://github.com/user-attachments/assets/9e30d70f-7c95-4f54-ab7a-24ac01723d37" />
+  src/
+    controllers/
+    routes/
+    imap/
+    services/
+    utils/
+    Category/
+    config/
+frontend/
+  src/
+    components/
+    hooks/
+    types/
+```
 
 ---
 
-## Credits:
---Some Part of this Codebase is assisted by Chatgpt for some structure of tackling errors.
---SlackWebhook Documentation.
---Vectordb and Chroma documentaion.
+## 🐛 Troubleshooting
+
+- **IMAP login failed:** Use app password, enable IMAP.
+- **Elasticsearch errors:** Ensure Docker is running, check port 9200.
+- **AI errors:** Validate API key and environment variables.
+- **Emails not syncing:** Check backend logs, account status.
 
 ---
 
 ## 📄 License
->>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
 
-## Run this Backend Project Locally...
+MIT
 
-Follow the following to run this OneBox Backend server on your system:-
-
-###  Prerequisites required..
-
-Carefully install the following before running the backend:-
-
---**Node.js**(v18)
---**API key**
---**IMAP enabled google account and app password**(After Turning on 2FA)
---**Docker**(Install Docker dekstop and set it up)
---**Postman** (For test APIs purpose..)
---Optional guide:- **use my package.json file dependencies to recheck versions**
-
-
------------------------------------------------------------------------------------------------------------------------------------------
-
-## Setting Up Files on you system
-
-
-1. Clone the Repository
-
-"git clone https://github.com/Arpit-singh12/OneBox_Assignment.git"
-
-2. Install all dependencies
-
-**npm install**
-
-3. Run ElasticSearch using Docker
-
-Note: you can use my docker-compose.yml file.
-
-On terminal:
-    >Run docker --version to confirm docker is installed
-    >docker-compose pull to load the docker and Kibana
-    >docker-compose down to down the docker server and then again pull
-    (This is personal Tip if you caught any error in ES you can do this...)
-
-4. Start the Development server
-
-**npm run dev**
-
-You can see on terminal as:-
-
-Index 'emails' already exists
-Server is running on port <PORT>
-
-
------------------------------------------------------------------------------------------------------------------------------------------
-## Test the API
-
-Recommended to use Postman
-
-1. Create IMAP account get your key password with you
-2. Use Post method http://localhost:5000/api/accounts
-
-3. Make sure Postman read content on json format
-
-4. on body :-
-{
-  "email": "your@gmail.com",
-  "password": "your_app_password",
-  "host": "imap.gmail.com",
-  "port": 993,
-  "secure": true
-}
-
-
-5. Search for emails:-
-Use GET method http://localhost:PORT/api/account/search/category?query=demo&account=your@gmail.com&folder=INBOX
-
-6. API 5: Suggest AI Reply (Gemini + Vector): 
-
-POST http://localhost:5000/api/reply/suggest
-
-BODY:
-{
-  "subject": "Let's schedule an interview",
-  "body": "You've been shortlisted. Please share your availability.",
-  "email": "hr@example.com"
-}
-
-
-Note:
-Some issue you can tackle:-
-> Gmail IMAP login failed? Make sure you use an App password.
-> Have ElasticSearch Error take a look and check docker is running on port 9200.
-> for categorisation issue check you API key and declaration of Key.
-
-
-## Demo link...
-https://drive.google.com/file/d/1sYBR3JsdO_wWkNVQtHjTiYtnaACnDuri/view?usp=sharing 
-
-<img width="1919" height="972" alt="Screenshot 2025-09-25 232932" src="https://github.com/user-attachments/assets/929563ba-cd8e-40ee-826c-35023c790115" />
-
-<img width="1919" height="973" alt="Screenshot 2025-09-25 234044" src="https://github.com/user-attachments/assets/9e30d70f-7c95-4f54-ab7a-24ac01723d37" />
-
-
-## Credits:
---Some Part of this Codebase is assisted by Chatgpt for some structure of tackling errors.
---SlackWebhook Documentation.
---Vectordb and Chroma documentaion.
-
-<<<<<<< HEAD
-=======
-
-**Built with ❤️ by contributors for efficient, intelligent email
-
->>>>>>> 899ae2097c7521fd15eeb12067857974216bac0f
+---
